@@ -5,7 +5,7 @@
  * Verifica: costruttore, getter, setter, gestione voti speciali.
  */
 
-require_once __DIR__ . '/../classi/EsameLaureando.php';
+require_once __DIR__ . '/../classes/EsameLaureando.php';
 
 // Carica configurazione test da JSON
 $configFile = __DIR__ . '/fixtures/config_TESTesameLaureando.json';

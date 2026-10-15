@@ -47,8 +47,8 @@ try {
 
         // ===== VISUALIZZA PROSPETTI (UC2) =====
         case 'visualizza_prospetti':
-            require_once __DIR__ . '/classi/AccessoProspetti.php';
-            require_once __DIR__ . '/classi/Configurazione.php';
+            require_once __DIR__ . '/classes/AccessoProspetti.php';
+            require_once __DIR__ . '/classes/Configurazione.php';
 
             try {
                 // Validazione: verifica che dati_invio.json esista e sia valido
@@ -97,7 +97,7 @@ try {
 
         // ===== SALVA CONFIGURAZIONE =====
         case 'salva_configurazione':
-            require_once __DIR__ . '/classi/Configurazione.php';
+            require_once __DIR__ . '/classes/Configurazione.php';
 
             $cdl = trim($_POST['cdl'] ?? '');
             if (empty($cdl)) {
@@ -129,7 +129,7 @@ try {
 
         // ===== ELIMINA DATI GENERATI =====
         case 'elimina_dati':
-            require_once __DIR__ . '/classi/AccessoProspetti.php';
+            require_once __DIR__ . '/classes/AccessoProspetti.php';
             $cartellaBase = (new AccessoProspetti())->getCartellaOutput();
             $eliminati = 0;
 

@@ -9,9 +9,9 @@
  * costruite dinamicamente dal file di configurazione formule_laurea.json.
  */
 
-require_once __DIR__ . '/../classi/CarrieraLaureandoInformatica.php';
-require_once __DIR__ . '/../classi/CarrieraLaureando.php';
-require_once __DIR__ . '/../classi/Configurazione.php';
+require_once __DIR__ . '/../classes/CarrieraLaureandoInformatica.php';
+require_once __DIR__ . '/../classes/CarrieraLaureando.php';
+require_once __DIR__ . '/../classes/Configurazione.php';
 
 // Carica configurazione test da JSON
 $configFile = __DIR__ . '/fixtures/config_TESTprospettoPDFCommissione.json';

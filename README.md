@@ -16,7 +16,7 @@ L'applicazione legge carriere e anagrafiche da un dataset JSON dimostrativo, cal
 
 La seconda pagina del prospetto della commissione mostra carriera, indicatori e simulazione del voto. Cliccando sull'anteprima si apre il PDF completo.
 
-[![Carriera e simulazione del voto di laurea](docs/esempi/prospetto-commissione.png)](docs/esempi/prospetto-commissione.pdf)
+[![Carriera e simulazione del voto di laurea](docs/examples/prospetto-commissione.png)](docs/examples/prospetto-commissione.pdf)
 
 ## Struttura
 
@@ -24,13 +24,13 @@ La seconda pagina del prospetto della commissione mostra carriera, indicatori e 
 docs/
 ├── documentazione.pdf       Relazione del progetto
 ├── modello.vpp              Modello UML per Visual Paradigm
-└── esempi/                  PDF dimostrativo e anteprima
-sorgente/
-├── classi/                  Entity, Boundary e Control
+└── examples/                  PDF dimostrativo e anteprima
+src/
+├── classes/                  Entity, Boundary e Control
 ├── config/                  Formule, corsi e percorsi applicativi
 ├── data/                    Anagrafiche e carriere dimostrative
 ├── lib/                     FPDF e PHPMailer, con le loro licenze
-├── test/                    Suite automatica e fixture JSON
+├── tests/                    Suite automatica e fixture JSON
 ├── wordpress-snippets/      Adattamento delle pagine per WordPress
 ├── index.php                Generazione, visualizzazione e invio
 ├── indexCONF.php            Configurazione
@@ -47,13 +47,13 @@ Serve **PHP 8.2** con le estensioni `ctype` e `iconv`. Le librerie sono incluse:
 Dalla cartella del repository:
 
 ```bash
-cd sorgente
+cd src
 LAUREANDOSI_BASE_URL= php -S 127.0.0.1:8000
 ```
 
 Aprire [la pagina principale](http://127.0.0.1:8000/), [la configurazione](http://127.0.0.1:8000/indexCONF.php) o [i test](http://127.0.0.1:8000/indexTEST.php).
 
-Per una prima prova scegliere **T. Ing. Informatica**, inserire le matricole `123456 345678` e la data `2023-04-01`, quindi generare i prospetti. I PDF vengono creati in `sorgente/data/pdf_generati/`; questa cartella e lo stato dell'ultimo invio sono esclusi da Git.
+Per una prima prova scegliere **T. Ing. Informatica**, inserire le matricole `123456 345678` e la data `2023-04-01`, quindi generare i prospetti. I PDF vengono creati in `src/data/pdf_generati/`; questa cartella e lo stato dell'ultimo invio sono esclusi da Git.
 
 L'invio email richiede un servizio di posta locale configurato per `mail()`: il server PHP da solo non basta. I test non inviano messaggi.
 
@@ -62,7 +62,7 @@ L'invio email richiede un servizio di posta locale configurato per `mail()`: il 
 Dalla cartella del repository:
 
 ```bash
-php sorgente/test/run.php
+php src/tests/run.php
 ```
 
 Il comando restituisce codice di uscita `0` se tutte le verifiche passano e `1` in presenza di fallimenti. Include prove degli endpoint in processi PHP separati, che richiedono `proc_open` abilitato. La pagina `indexTEST.php` esegue gli stessi test delle classi e dei PDF, senza le prove dei sottoprocessi CLI.
@@ -72,14 +72,14 @@ Entrambe le modalità usano una directory temporanea e la rimuovono al termine, 
 Se PHP è installato tramite XAMPP ma non è nel `PATH`, su Linux il comando equivalente è:
 
 ```bash
-/opt/lampp/bin/php sorgente/test/run.php
+/opt/lampp/bin/php src/tests/run.php
 ```
 
 ## Configurazione e WordPress
 
-I corsi supportati e le formule sono in `sorgente/config/formule_laurea.json`; gli esami informatici sono in `esami_informatici.json`. I selettori delle pagine ricavano i corsi da questa configurazione. Cybersecurity è presente nel dataset come caso di corso non supportato.
+I corsi supportati e le formule sono in `src/config/formule_laurea.json`; gli esami informatici sono in `esami_informatici.json`. I selettori delle pagine ricavano i corsi da questa configurazione. Cybersecurity è presente nel dataset come caso di corso non supportato.
 
-`sorgente/config/app.php` centralizza i percorsi. `LAUREANDOSI_BASE_URL` indica il prefisso pubblico, con valore predefinito `/laureandosi`; il valore vuoto usato nell'avvio locale serve l'applicazione alla radice. `LAUREANDOSI_RUNTIME_DIR` cambia la directory dei risultati e dello stato di invio: i test la impostano automaticamente. Se la si cambia per un'installazione web, occorre anche rendere raggiungibili i PDF tramite il relativo URL pubblico.
+`src/config/app.php` centralizza i percorsi. `LAUREANDOSI_BASE_URL` indica il prefisso pubblico, con valore predefinito `/laureandosi`; il valore vuoto usato nell'avvio locale serve l'applicazione alla radice. `LAUREANDOSI_RUNTIME_DIR` cambia la directory dei risultati e dello stato di invio: i test la impostano automaticamente. Se la si cambia per un'installazione web, occorre anche rendere raggiungibili i PDF tramite il relativo URL pubblico.
 
 Il progetto conserva gli snippet previsti per l'integrazione didattica con WordPress. Si aspettano il codice in `laureandosi/` sotto il tema attivo e richiamano azioni AJAX `laureandosi_*`. **I gestori di queste azioni non sono inclusi:** gli snippet documentano l'adattamento esistente, ma non costituiscono un plugin WordPress completo e installabile.
 

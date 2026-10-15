@@ -5,9 +5,9 @@
  * Verifica: generazione PDF, salvataggio su filesystem, libreria fpdf184.
  */
 
-require_once __DIR__ . '/../classi/ProspettoPDFLaureando.php';
-require_once __DIR__ . '/../classi/AccessoProspetti.php';
-require_once __DIR__ . '/../classi/Configurazione.php';
+require_once __DIR__ . '/../classes/ProspettoPDFLaureando.php';
+require_once __DIR__ . '/../classes/AccessoProspetti.php';
+require_once __DIR__ . '/../classes/Configurazione.php';
 
 // Carica configurazione test da JSON
 $configFile = __DIR__ . '/fixtures/config_TESTprospettoPDFLaureando.json';

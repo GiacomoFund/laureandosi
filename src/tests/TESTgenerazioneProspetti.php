@@ -1,6 +1,6 @@
 <?php
 /** Verifica generazione PDF e gestione di carriere parzialmente disponibili. */
-require_once __DIR__ . '/../classi/GestoreProspetti.php';
+require_once __DIR__ . '/../classes/GestoreProspetti.php';
 
 $commissione = new ProspettoPDFCommissione(
     ['123456', '345678'], 'T. Ing. Informatica', '2023-04-01'

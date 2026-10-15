@@ -5,7 +5,7 @@
  * Verifica: gestione percorsi PDF, nomi file, percorsi assoluti.
  */
 
-require_once __DIR__ . '/../classi/AccessoProspetti.php';
+require_once __DIR__ . '/../classes/AccessoProspetti.php';
 
 // Carica configurazione test da JSON
 $configFile = __DIR__ . '/fixtures/config_TESTaccessoProspetti.json';

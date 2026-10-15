@@ -2,7 +2,7 @@
 /**
  * indexTEST.php
  * Pagina per l'esecuzione dei test unitari.
- * Esegue tutti i test nella directory test/ e mostra i risultati.
+ * Esegue tutti i test nella directory tests/ e mostra i risultati.
  */
 ?>
 <!DOCTYPE html>
@@ -111,7 +111,7 @@
 
 <?php
 
-require __DIR__ . '/test/esegui.php';
+require __DIR__ . '/tests/esegui.php';
 ?>
 
 </main>

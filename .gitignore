@@ -1,6 +1,6 @@
 # Risultati e stato di esecuzione
-/sorgente/data/pdf_generati/
-/sorgente/data/dati_invio.json
+/src/data/pdf_generati/
+/src/data/dati_invio.json
 
 # Archivi, file temporanei e impostazioni locali
 *.zip

@@ -5,7 +5,7 @@
  * Verifica: marcatura esami informatici, calcolo bonus, media informatici.
  */
 
-require_once __DIR__ . '/../classi/CarrieraLaureandoInformatica.php';
+require_once __DIR__ . '/../classes/CarrieraLaureandoInformatica.php';
 
 // Carica configurazione test da JSON
 $configFile = __DIR__ . '/fixtures/config_TESTcarrieraLaureandoInformatica.json';

@@ -8,7 +8,7 @@
  * Utilizza POST per le modifiche.
  */
 
-require_once __DIR__ . '/classi/Configurazione.php';
+require_once __DIR__ . '/classes/Configurazione.php';
 
 $messaggio = '';
 $tipoMessaggio = '';

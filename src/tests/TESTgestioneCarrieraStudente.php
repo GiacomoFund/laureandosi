@@ -5,7 +5,7 @@
  * Verifica: accesso ai dati studenti (anagrafica ed esami) da file JSON.
  */
 
-require_once __DIR__ . '/../classi/GestioneCarrieraStudente.php';
+require_once __DIR__ . '/../classes/GestioneCarrieraStudente.php';
 
 // Carica configurazione test da JSON
 $configFile = __DIR__ . '/fixtures/config_TESTgestioneCarrieraStudente.json';

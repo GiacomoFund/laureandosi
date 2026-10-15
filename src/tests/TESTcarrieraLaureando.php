@@ -6,7 +6,7 @@
  * I dati di test vengono caricati da fixtures/config_TESTcarrieraLaureando.json
  */
 
-require_once __DIR__ . '/../classi/CarrieraLaureando.php';
+require_once __DIR__ . '/../classes/CarrieraLaureando.php';
 
 // Carica configurazione test da JSON
 $configFile = __DIR__ . '/fixtures/config_TESTcarrieraLaureando.json';

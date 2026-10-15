@@ -6,7 +6,7 @@
  * I dati di test vengono caricati da fixtures/config_TESTconfigurazione.json
  */
 
-require_once __DIR__ . '/../classi/Configurazione.php';
+require_once __DIR__ . '/../classes/Configurazione.php';
 
 // Carica configurazione test da JSON
 $configFile = __DIR__ . '/fixtures/config_TESTconfigurazione.json';

@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 header('Content-Type: application/json; charset=utf-8');
 
-require_once __DIR__ . '/classi/GestoreInviiEmail.php';
+require_once __DIR__ . '/classes/GestoreInviiEmail.php';
 
 try {
     // Se l'utente ha selezionato matricole specifiche, filtra

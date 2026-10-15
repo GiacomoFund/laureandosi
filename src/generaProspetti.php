@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 header('Content-Type: application/json; charset=utf-8');
 
-require_once __DIR__ . '/classi/GestoreProspetti.php';
-require_once __DIR__ . '/classi/Configurazione.php';
+require_once __DIR__ . '/classes/GestoreProspetti.php';
+require_once __DIR__ . '/classes/Configurazione.php';
 
 try {
     foreach (['cdl', 'data_laurea', 'matricole'] as $campo) {

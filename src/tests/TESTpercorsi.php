@@ -1,7 +1,7 @@
 <?php
 /** Verifica che installazione e risultati siano configurabili senza modificare il codice. */
-require_once __DIR__ . '/../classi/AccessoProspetti.php';
-require_once __DIR__ . '/../classi/Configurazione.php';
+require_once __DIR__ . '/../classes/AccessoProspetti.php';
+require_once __DIR__ . '/../classes/Configurazione.php';
 
 $basePrecedente = getenv('LAUREANDOSI_BASE_URL');
 try {

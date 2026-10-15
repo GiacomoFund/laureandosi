@@ -9,8 +9,8 @@
  *  - Visualizzazione prospetti (UC2)
  *  - Invio prospetti via email (UC3)
  */
-require_once __DIR__ . '/classi/Configurazione.php';
-require_once __DIR__ . '/classi/AccessoProspetti.php';
+require_once __DIR__ . '/classes/Configurazione.php';
+require_once __DIR__ . '/classes/AccessoProspetti.php';
 ?>
 <!DOCTYPE html>
 <html lang="it">
