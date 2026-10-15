@@ -1,0 +1,52 @@
+{
+  "tests": [
+    {
+      "id": "test1_caricamento",
+      "matricola": "123456",
+      "cdl": "T. Ing. Informatica",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "nome": "GIANLUIGI",
+        "annoMin": 2000,
+        "annoMax": 2030
+      }
+    },
+    {
+      "id": "test2_marcatura_informatici",
+      "expected": {
+        "minEsamiInformatici": 1,
+        "provaFinaleInformatica": false
+      }
+    },
+    {
+      "id": "test3_media_informatici",
+      "expected": {
+        "mediaMin": 18,
+        "mediaMax": 33
+      }
+    },
+    {
+      "id": "test4_bonus_in_tempo",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "bonusLabelValori": ["SI", "NO"],
+        "idoneitaBonusBoolean": true
+      }
+    },
+    {
+      "id": "test5_bonus_fuori_tempo",
+      "dataLaurea": "2030-07-15",
+      "expected": {
+        "bonusLabel": "NO"
+      }
+    },
+    {
+      "id": "test6_bonus_alza_media",
+      "dataLaurea1": "2024-07-15",
+      "dataLaurea2": "2030-07-15",
+      "expected": {
+        "mediaConBonus_gte_mediaSenzaBonus": true
+      }
+    }
+  ]
+}

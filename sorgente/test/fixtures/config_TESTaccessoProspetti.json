@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "id": "test1_percorsi_pdf",
+      "matricola": "123456",
+      "expected": {
+        "contiene_commissione": "prospettoCommissione",
+        "contiene_pdf": ".pdf"
+      }
+    },
+    {
+      "id": "test2_percorso_assoluto",
+      "expected": {
+        "contiene_data": "data",
+        "contiene_pdf_generati": "pdf_generati"
+      }
+    },
+    {
+      "id": "test3_formato_slash",
+      "expected": {
+        "usa_forward_slash": true,
+        "no_backslash": true
+      }
+    }
+  ]
+}

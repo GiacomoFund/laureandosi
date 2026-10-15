@@ -1,0 +1,209 @@
+{
+    "T. Ing. Biomedica": {
+        "formula": "(110 \/ 27.17) * ($M * $CFU + $T * 3) \/ ($CFU + 3)",
+        "cdl_short": "t-bio",
+        "cfuRichiesti": 177,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 18,
+        "Tmax": 30,
+        "Tstep": 1,
+        "Cmin": 0,
+        "Cmax": 0,
+        "Cstep": 0,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in T. Ing. Biomedica - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi hanno voto nominale zero;\n- gli esami che non fanno media non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea.\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto. Il punteggio di commissione (C) e il voto di tesi (T) vengono assegnati durante la seduta di laurea."
+    },
+    "T. Ing. Elettronica": {
+        "formula": "2 + 4 * ($M * $CFU + $T * 3) \/ ($CFU + 3)",
+        "cdl_short": "t-ele",
+        "cfuRichiesti": 177,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 18,
+        "Tmax": 33,
+        "Tstep": 1,
+        "Cmin": 0,
+        "Cmax": 0,
+        "Cstep": 0,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in T. Ing. Elettronica - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi hanno voto nominale zero;\n- gli esami che non fanno media non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea.\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto."
+    },
+    "T. Ing. Informatica": {
+        "formula": "$M * 3 + 18 + $T + $C",
+        "cdl_short": "t-inf",
+        "cfuRichiesti": 177,
+        "valoreLode": 33,
+        "informatica": true,
+        "Tmin": 0,
+        "Tmax": 0,
+        "Tstep": 0,
+        "Cmin": 1,
+        "Cmax": 7,
+        "Cstep": 1,
+        "esamiDaTogliere": [
+            "PROVA FINALE",
+            "LIBERA SCELTA PER RICONOSCIMENTI",
+            "TEST DI VALUTAZIONE DI INGEGNERIA"
+        ],
+        "esamiNonMedia": [
+            "PROVA DI LINGUA INGLESE (B1)",
+            "PROVA DI LINGUA INGLESE",
+            "PROVA DI LINGUA INGLESE B2",
+            "TIROCINIO"
+        ],
+        "oggettoMail": "Appello di laurea in Ing. Informatica - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi hanno voto nominale zero al posto di giudizio o idoneita', in quanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 1 a 3.\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula riportata. Il bonus informatica esclude l'esame con il voto piu' basso dalla media pesata per gli studenti che si laureano entro i tempi previsti."
+    },
+    "T. Ing. delle Telecomunicazioni": {
+        "formula": "$M * 11 \/ 3 + $C",
+        "cdl_short": "t-tel",
+        "cfuRichiesti": 177,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 0,
+        "Tmax": 0,
+        "Tstep": 0,
+        "Cmin": 1,
+        "Cmax": 11,
+        "Cstep": 1,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in T. Ing. delle Telecomunicazioni - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto."
+    },
+    "M. Ing. Biomedica, Bionics Engineering": {
+        "formula": "$M * 3.5 + 11 + $C",
+        "cdl_short": "m-bio",
+        "cfuRichiesti": 105,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 0,
+        "Tmax": 0,
+        "Tstep": 0,
+        "Cmin": 0.5,
+        "Cmax": 4,
+        "Cstep": 0.5,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in M. Ing. Biomedica - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto."
+    },
+    "M. Ing. Elettronica": {
+        "formula": "4 * ($M * $CFU + $T * 18) \/ ($CFU + 18)",
+        "cdl_short": "m-ele",
+        "cfuRichiesti": 102,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 18,
+        "Tmax": 30,
+        "Tstep": 1,
+        "Cmin": 0,
+        "Cmax": 0,
+        "Cstep": 0,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in M. Ing. Elettronica - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto."
+    },
+    "M. Computer Engineering": {
+        "formula": "$M * 3 + 22 + $T + $C",
+        "cdl_short": "m-coe",
+        "cfuRichiesti": 96,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 0,
+        "Tmax": 0,
+        "Tstep": 0,
+        "Cmin": 1,
+        "Cmax": 3,
+        "Cstep": 1,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in M. Computer Engineering - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto."
+    },
+    "M. Artificial Intelligence and Data Engineering": {
+        "formula": "$M * 3 + 22 + $T + $C",
+        "cdl_short": "m-aid",
+        "cfuRichiesti": 96,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 0,
+        "Tmax": 0,
+        "Tstep": 0,
+        "Cmin": 1,
+        "Cmax": 3,
+        "Cstep": 1,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in M. Artificial Intelligence and Data Engineering - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto."
+    },
+    "M. Ing. Robotica e della Automazione": {
+        "formula": "$M * 3 + 18.5 + $T",
+        "cdl_short": "m-rob",
+        "cfuRichiesti": 102,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 1,
+        "Tmax": 10,
+        "Tstep": 1,
+        "Cmin": 0,
+        "Cmax": 0,
+        "Cstep": 0,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in M. Ing. Robotica - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto."
+    },
+    "M. Ing. delle Telecomunicazioni": {
+        "formula": "$M * 11 \/ 3 + $C",
+        "cdl_short": "m-tel",
+        "cfuRichiesti": 96,
+        "valoreLode": 33,
+        "informatica": false,
+        "Tmin": 0,
+        "Tmax": 0,
+        "Tstep": 0,
+        "Cmin": 1,
+        "Cmax": 11,
+        "Cstep": 1,
+        "esamiDaTogliere": [
+            "PROVA FINALE"
+        ],
+        "esamiNonMedia": [],
+        "oggettoMail": "Appello di laurea in M. Ing. delle Telecomunicazioni - indicatori per voto di laurea",
+        "testoMail": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperera' per determinare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: ...\n\nCordiali saluti\nUnita' Didattica DII",
+        "pediceCommissione": "La commissione determina il voto finale di laurea applicando la formula e i parametri riportati nel prospetto."
+    }
+}

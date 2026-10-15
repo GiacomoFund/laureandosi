@@ -1,0 +1,73 @@
+{
+  "tests": [
+    {
+      "id": "test1_caricamento_dati",
+      "matricola": "123456",
+      "cdl": "T. Ing. Informatica",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "nome": "GIANLUIGI",
+        "cognome": "DONNARUMMA",
+        "matricola": "123456",
+        "minEsami": 1
+      }
+    },
+    {
+      "id": "test2_filtri_esami",
+      "matricola": "123456",
+      "cdl": "T. Ing. Informatica",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "testValutazioneEscluso": true,
+        "linguaIngleseNonFaMedia": true,
+        "votiZeroEsclusi": true
+      }
+    },
+    {
+      "id": "test3_media_pesata",
+      "matricola": "123456",
+      "cdl": "T. Ing. Informatica",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "media": 23.655,
+        "minMedia": 23.0,
+        "maxMedia": 24.5,
+        "tolleranza": 0.05
+      }
+    },
+    {
+      "id": "test4_crediti",
+      "matricola": "123456",
+      "cdl": "T. Ing. Informatica",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "minCrediti": 150,
+        "creditiMediaPositivi": true
+      }
+    },
+    {
+      "id": "test5_voto_laurea",
+      "matricola": "123456",
+      "cdl": "T. Ing. Informatica",
+      "dataLaurea": "2024-07-15",
+      "input": {
+        "T": 2,
+        "C": 3
+      },
+      "expected": {
+        "tolleranza": 0.1
+      }
+    },
+    {
+      "id": "test6_secondo_studente",
+      "matricola": "234567",
+      "cdl": "T. Ing. Biomedica",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "nome": "ALESSANDRO",
+        "minMedia": 18,
+        "maxMedia": 31
+      }
+    }
+  ]
+}

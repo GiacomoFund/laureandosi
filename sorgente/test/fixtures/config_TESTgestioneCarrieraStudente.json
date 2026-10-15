@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "id": "test1_caricamento_123456",
+      "matricola": "123456",
+      "expected": {
+        "nome": "GIANLUIGI",
+        "cognome": "DONNARUMMA",
+        "minEsami": 20
+      }
+    },
+    {
+      "id": "test2_caricamento_multiplo",
+      "matricola": "234567",
+      "expected": {
+        "nome": "ALESSANDRO"
+      }
+    },
+    {
+      "id": "test3_gestione_errori",
+      "matricolaInvalida": "abc",
+      "matricolaInesistente": "999999",
+      "expected": {
+        "eccezioneInvalida": "InvalidArgumentException",
+        "eccezioneInesistente": "RuntimeException"
+      }
+    }
+  ]
+}

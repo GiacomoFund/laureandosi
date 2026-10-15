@@ -1,0 +1,28 @@
+{
+  "tests": [
+    {
+      "id": "test1_creazione",
+      "matricola": "123456",
+      "cdl": "T. Ing. Informatica",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "classePDF": "FPDF"
+      }
+    },
+    {
+      "id": "test2_salvataggio",
+      "expected": {
+        "minDimensione": 100
+      }
+    },
+    {
+      "id": "test3_generazione_multipla",
+      "matricola": "234567",
+      "cdl": "T. Ing. Biomedica",
+      "dataLaurea": "2024-07-15",
+      "expected": {
+        "minDimensione": 100
+      }
+    }
+  ]
+}

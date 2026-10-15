@@ -1,0 +1,48 @@
+{
+  "tests": [
+    {
+      "id": "test1_costruttore_completo",
+      "esame": {
+        "nome": "ANALISI MATEMATICA I",
+        "codice": "MAT01",
+        "voto": 28,
+        "cfu": 12,
+        "data": "15/06/2020",
+        "faMedia": true,
+        "informatico": false
+      }
+    },
+    {
+      "id": "test2_setter",
+      "modifiche": {
+        "faMedia": false,
+        "informatico": true,
+        "voto": 30
+      }
+    },
+    {
+      "id": "test3_idoneita",
+      "esame": {
+        "nome": "PROVA DI LINGUA INGLESE",
+        "codice": "LIN01",
+        "voto": 0,
+        "cfu": 3,
+        "data": "01/06/2019",
+        "faMedia": false,
+        "informatico": false
+      }
+    },
+    {
+      "id": "test4_lode",
+      "esame": {
+        "nome": "FONDAMENTI DI PROGRAMMAZIONE",
+        "codice": "INF01",
+        "voto": 33,
+        "cfu": 9,
+        "data": "20/02/2021",
+        "faMedia": true,
+        "informatico": true
+      }
+    }
+  ]
+}

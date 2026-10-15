@@ -1,0 +1,62 @@
+{
+  "descrizione": "Verifica output atteso confrontato con i prospetti PDF di esempio forniti dal docente.",
+  "dataLaureaDefault": "2023-01-04",
+  "dataLaureaInformatica": "2023-04-01",
+  "tolleranza": 0.001,
+  "studenti": [
+    {
+      "matricola": "123456",
+      "cdl": "t-inf",
+      "nome": "GIANLUIGI",
+      "cognome": "DONNARUMMA",
+      "expected": {
+        "media": 23.655,
+        "cfuTotali": 177,
+        "cfuMedia": 174,
+        "bonus": false,
+        "mediaInf": 23.667
+      }
+    },
+    {
+      "matricola": "234567",
+      "cdl": "m-ele",
+      "nome": "ALESSANDRO",
+      "cognome": "BASTONI",
+      "expected": {
+        "media": 24.559,
+        "cfuTotali": 102,
+        "cfuMedia": 102
+      }
+    },
+    {
+      "matricola": "345678",
+      "cdl": "t-inf",
+      "nome": "NICCOLO",
+      "cognome": "BARELLA",
+      "expected": {
+        "media": 25.564,
+        "cfuTotali": 177,
+        "cfuMedia": 165,
+        "bonus": true,
+        "mediaInf": 25.75
+      }
+    },
+    {
+      "matricola": "456789",
+      "cdl": "t-tel",
+      "nome": "MATTEO",
+      "cognome": "POLITANO",
+      "expected": {
+        "media": 32.625,
+        "cfuTotali": 96,
+        "cfuMedia": 96
+      }
+    },
+    {
+      "matricola": "567890",
+      "cdl": "m-cyb",
+      "nome": "FRANCESCO",
+      "cognome": "ACERBI"
+    }
+  ]
+}

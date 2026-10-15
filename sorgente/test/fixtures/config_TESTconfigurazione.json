@@ -1,0 +1,73 @@
+{
+  "tests": [
+    {
+      "id": "test1_caricamento_config_informatica",
+      "cdl": "T. Ing. Informatica",
+      "expected": {
+        "formula": "$M * 3 + 18 + $T + $C",
+        "cfuRichiesti": 177,
+        "valoreLode": 33.0,
+        "tolleranzaLode": 0.01
+      }
+    },
+    {
+      "id": "test2_parametri_simulazione",
+      "cdl": "T. Ing. Informatica",
+      "expected": {
+        "Cmin": 1,
+        "Cmax": 7,
+        "esameInformaticoEsempio": "FONDAMENTI DI PROGRAMMAZIONE"
+      }
+    },
+    {
+      "id": "test3_filtri_esami",
+      "cdl": "T. Ing. Informatica",
+      "expected": {
+        "daTogliere": ["TEST DI VALUTAZIONE DI INGEGNERIA", "PROVA FINALE"],
+        "nonMedia": ["PROVA DI LINGUA INGLESE (B1)"]
+      }
+    },
+    {
+      "id": "test4_cdl_inesistente",
+      "cdl": "CdL Inesistente XYZ",
+      "expected": {
+        "eccezioneAttesa": true,
+        "tipoEccezione": "InvalidArgumentException"
+      }
+    },
+    {
+      "id": "test5_valutatore_formule_sicuro",
+      "cdl": "T. Ing. Informatica",
+      "test": {
+        "variabili": {"M": 27.5, "T": 2, "C": 5},
+        "expected": 107.5,
+        "tolleranza": 0.1
+      }
+    },
+    {
+      "id": "test6_valutatore_formule_codice_malevolo",
+      "test": {
+        "formulaMalevola": "$M * 3 + 18; unlink('/tmp/test.txt');",
+        "variabili": {"M": 25},
+        "expected": {
+          "eccezioneAttesa": true
+        }
+      }
+    },
+    {
+      "id": "test7_cdl_short",
+      "cdl": "T. Ing. Informatica",
+      "expected": {
+        "cdlShort": "INF"
+      }
+    },
+    {
+      "id": "test8_parametri_email",
+      "cdl": "T. Ing. Informatica",
+      "expected": {
+        "hasOggetto": true,
+        "hasCorpo": true
+      }
+    }
+  ]
+}
