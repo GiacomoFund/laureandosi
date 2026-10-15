@@ -116,7 +116,11 @@ try {
 
         if (file_exists($fullPath)) {
             try {
+                $totaliPrimaDelFile = $_TEST_TOTALI;
                 include $fullPath;
+                if ($_TEST_TOTALI === $totaliPrimaDelFile) {
+                    assertTest($nome . ': nessuna verifica eseguita', false);
+                }
             } catch (Throwable $e) {
                 $_TEST_FAIL++;
                 $_TEST_TOTALI++;
