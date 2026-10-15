@@ -2,9 +2,6 @@
 /**
  * Classe Boundary: AccessoProspetti
  * Gestisce i percorsi dei file PDF generati sul server.
- *
- * Operazioni:
- *  + getPercorsiPDF(): Array<String>
  */
 class AccessoProspetti {
 
@@ -14,13 +11,15 @@ class AccessoProspetti {
 
     public function __construct($cdlShort = '') {
         $this->cdlShort = $cdlShort;
-        if (!empty($cdlShort)) {
-            $this->basePath = __DIR__ . '/../data/pdf_generati/' . $cdlShort . '/';
-            $this->baseUrl  = '/laureandosi/data/pdf_generati/' . $cdlShort . '/';
-        } else {
-            $this->basePath = __DIR__ . '/../data/pdf_generati/';
-            $this->baseUrl  = '/laureandosi/data/pdf_generati/';
-        }
+        $app = require __DIR__ . '/../config/app.php';
+        $sottocartella = $cdlShort === '' ? '' : $cdlShort . '/';
+        $this->basePath = $app['runtime_dir'] . '/pdf_generati/' . $sottocartella;
+        $this->baseUrl = $app['base_url'] . '/data/pdf_generati/' . $sottocartella;
+    }
+
+    public static function getPercorsoDatiInvio() {
+        $app = require __DIR__ . '/../config/app.php';
+        return $app['runtime_dir'] . '/dati_invio.json';
     }
 
     /**

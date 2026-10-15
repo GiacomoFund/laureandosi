@@ -68,18 +68,8 @@ $body = preg_replace(
     $body
 );
 
-// Fix anche l'aggiornamento dinamico JS del link PDF
-$scripts = str_replace(
-    "link.href = '/laureandosi/data/pdf_generati/'",
-    "link.href = '" . esc_js($pdfBaseUrl) . "&cdl='",
-    $scripts
-);
-// Aggiorna anche il suffisso del percorso PDF nel JS
-$scripts = str_replace(
-    " + data.cdlShort + '/prospettoCommissione.pdf'",
-    " + data.cdlShort + '&file=prospettoCommissione.pdf'",
-    $scripts
-);
+// Il backend restituisce l'URL pubblico del PDF in data.urlCommissione.
+// Il gestore WordPress deve adattarlo all'azione laureandosi_pdf.
 
 // --- Output dentro WordPress ---
 echo '<div class="laureandosi-app">';

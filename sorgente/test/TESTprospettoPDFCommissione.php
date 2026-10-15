@@ -62,38 +62,15 @@ foreach ($testConfig['studenti'] as $studente) {
     $isInfCdl   = ($cdlShort === 't-inf');
     $dataLaurea = $isInfCdl ? $dataLaureaInformatica : $dataLaureaDefault;
 
-    // ---- Caso senza expected: lo studente non deve poter essere elaborato ----
-    // (es. 567890 m-cyb: il sistema tenta l'elaborazione ma il CdL non e' gestito)
+    // Un corso non supportato deve essere rifiutato esplicitamente.
     if (!isset($studente['expected'])) {
-        $erroreOttenuto = null;
-
+        $corsoRifiutato = false;
         try {
-            $configErr        = new Configurazione($cdlFull);
-            $isInformaticaErr = $configErr->isInformatica();
-
-            if ($isInformaticaErr) {
-                $carrieraErr = new CarrieraLaureandoInformatica(
-                    $matricola, $cdlFull, $dataLaurea, $configErr
-                );
-            } else {
-                $carrieraErr = new CarrieraLaureando(
-                    $matricola, $cdlFull, $dataLaurea, $configErr
-                );
-            }
-        } catch (Throwable $e) {
-            $erroreOttenuto = $e->getMessage();
+            new Configurazione($cdlFull);
+        } catch (InvalidArgumentException $e) {
+            $corsoRifiutato = true;
         }
-
-        // Il test deve apparire in rosso: ci si aspettava output ma il CdL non e' gestito
-        assertTest(
-            $label,
-            false,
-            sprintf('Il sistema tenta di elaborare la carriera per %s (%s), data laurea %s, '
-                . 'ma il CdL non e\' supportato per la generazione dei prospetti.',
-                $cdlFull, $cdlShort, $dataLaurea),
-            'Elaborazione carriera e calcolo indicatori',
-            $erroreOttenuto ? ('Errore: ' . $erroreOttenuto) : 'Errore: CdL non supportato'
-        );
+        assertTest($label . ': corso non supportato rifiutato', $corsoRifiutato);
         continue;
     }
 

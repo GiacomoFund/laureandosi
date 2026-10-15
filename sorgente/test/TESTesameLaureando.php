@@ -56,7 +56,7 @@ assertTest(
     $setterOk,
     $dettaglio2,
     'faMedia=false, informatico=true, voto=30',
-    sprintf('faMedia=%s, informatico=%s, voto=%d', 
+    sprintf('faMedia=%s, informatico=%s, voto=%d',
         $esame->getFaMedia() ? 'true' : 'false',
         $esame->getInformatico() ? 'true' : 'false',
         $esame->getVoto())
@@ -79,7 +79,7 @@ assertTest(
     $idoneitaOk,
     $dettaglio3,
     'voto=0, faMedia=false',
-    sprintf('voto=%d, faMedia=%s', 
+    sprintf('voto=%d, faMedia=%s',
         $esameIdon->getVoto(),
         $esameIdon->getFaMedia() ? 'true' : 'false')
 );

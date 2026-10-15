@@ -14,9 +14,6 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
  * Classe Control: GestoreInviiEmail
  * Gestisce l'invio dei prospetti via email ai laureandi.
  * Utilizza PHPMailer per la costruzione e l'invio delle email con allegati.
- *
- * Operazioni:
- *  + inviaProspetti(): array
  */
 class GestoreInviiEmail {
 
@@ -41,7 +38,7 @@ class GestoreInviiEmail {
             $this->dataLaurea    = $dataLaurea ?? '';
         } else {
             // Carica da file dati_invio.json
-            $percorso = __DIR__ . '/../data/dati_invio.json';
+            $percorso = AccessoProspetti::getPercorsoDatiInvio();
             if (!file_exists($percorso)) {
                 throw new RuntimeException(
                     "File dati invio non trovato. Generare prima i prospetti."
@@ -83,14 +80,14 @@ class GestoreInviiEmail {
     public function inviaProspetti() {
         $cdlShort   = $this->configurazione->getCdlShort();
         $accesso    = new AccessoProspetti($cdlShort);
-        
+
         // Validazione: verifica che esista almeno il prospetto della commissione
         if (!$accesso->esisteProspettoCommissione()) {
             throw new RuntimeException(
                 "Nessun prospetto della commissione trovato. Generare i prospetti prima di inviarli."
             );
         }
-        
+
         $gcs        = new GestioneCarrieraStudente();
         $params     = $this->configurazione->getParametriMail();
         $risultati  = [];

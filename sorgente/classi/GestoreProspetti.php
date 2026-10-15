@@ -7,13 +7,6 @@ require_once __DIR__ . '/Configurazione.php';
 /**
  * Classe Control: GestoreProspetti
  * Coordina la generazione di tutti i prospetti per un appello di laurea.
- *
- * Attributi:
- *  - prospettiGenerati: Lista dei prospetti PDF generati
- *
- * Operazioni:
- *  + generaProspettiLaureandi(): void
- *  + generaProspettoCommissione(): void
  */
 class GestoreProspetti {
 
@@ -90,19 +83,19 @@ class GestoreProspetti {
     /**
      * Salva i dati dell'appello corrente per l'invio email successivo.
      * Sostituisce i vecchi file ausiliario.json, ausiliario2.json, ausiliario3.json
-     * con un unico file strutturato (eliminazione ridondanza, problema #6).
+     * con un unico file strutturato.
      */
     public function salvaDatiPerInvio() {
         $datiInvio = [
-            'matricole'     => $this->matricole,
+            'matricole'     => $this->prospettiGenerati,
             'corsoDiLaurea' => $this->corsoDiLaurea,
             'dataLaurea'    => $this->dataLaurea
         ];
-        $percorso = __DIR__ . '/../data/dati_invio.json';
-        file_put_contents(
-            $percorso,
-            json_encode($datiInvio, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
-        );
+        $percorso = AccessoProspetti::getPercorsoDatiInvio();
+        $json = json_encode($datiInvio, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+        if (@file_put_contents($percorso, $json, LOCK_EX) === false) {
+            throw new RuntimeException('Impossibile salvare i dati per l’invio.');
+        }
     }
 
     /**

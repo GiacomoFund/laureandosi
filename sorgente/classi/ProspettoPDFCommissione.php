@@ -7,14 +7,6 @@ require_once __DIR__ . '/../lib/fpdf184/fpdf.php';
 /**
  * Classe Control: ProspettoPDFCommissione
  * Genera il PDF riepilogativo per la commissione di laurea.
- *
- * Attributi:
- *  + prospettoCommissione: FPDF
- *  + carriere: Array<CarrieraLaureando>
- *  + corsoDiLaurea: String
- *
- * Operazioni:
- *  + creaPDFCommissione(): FPDF
  */
 class ProspettoPDFCommissione {
 
@@ -41,15 +33,22 @@ class ProspettoPDFCommissione {
         $this->corsoDiLaurea  = $corsoDiLaurea;
         $this->dataLaurea     = $dataLaurea;
         $this->configurazione = $configurazione ?: new Configurazione($corsoDiLaurea);
-        $this->carriere       = $carriere;
+        $this->carriere       = [];
         $this->simulazioni    = [];
 
         // Crea internamente i ProspettoConSimulazione, riutilizzando le carriere se fornite
         foreach ($this->matricole as $i => $matricola) {
-            $carriera = isset($this->carriere[$i]) ? $this->carriere[$i] : null;
-            $this->simulazioni[] = new ProspettoConSimulazione(
-                $matricola, $corsoDiLaurea, $dataLaurea, $this->configurazione, $carriera
-            );
+            try {
+                $carriera = $carriere[$i] ?? null;
+                $simulazione = new ProspettoConSimulazione(
+                    $matricola, $corsoDiLaurea, $dataLaurea, $this->configurazione, $carriera
+                );
+                $this->simulazioni[] = $simulazione;
+                $this->carriere[] = $simulazione->getCarriera();
+            } catch (RuntimeException $e) {
+                // Una carriera non disponibile non blocca gli altri laureandi.
+                error_log('Errore per matricola ' . $matricola . ': ' . $e->getMessage());
+            }
         }
     }
 

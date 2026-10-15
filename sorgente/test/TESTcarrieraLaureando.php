@@ -148,16 +148,16 @@ try {
     $carriera2 = new CarrieraLaureando($test6['matricola'], $test6['cdl'], $test6['dataLaurea']);
     $nome2 = $carriera2->getNome();
     $media2 = $carriera2->getMediaPesata();
-    
+
     $secondoStudenteOk = (
         $nome2 === $test6['expected']['nome'] &&
         $media2 > $test6['expected']['minMedia'] &&
         $media2 < $test6['expected']['maxMedia']
     );
-    
+
     $dettaglio6 = sprintf('Verifica la capacità di caricare più studenti diversi in sequenza. Testa la matricola %s (%s) per verificare che nome e media siano corretti e che la classe non mantenga stato tra istanze diverse.',
         $test6['matricola'], $test6['expected']['nome']);
-    
+
     assertTest(
         'Caricamento multiplo studenti (robustezza)',
         $secondoStudenteOk,

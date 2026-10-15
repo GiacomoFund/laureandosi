@@ -9,6 +9,8 @@
  *  - Visualizzazione prospetti (UC2)
  *  - Invio prospetti via email (UC3)
  */
+require_once __DIR__ . '/classi/Configurazione.php';
+require_once __DIR__ . '/classi/AccessoProspetti.php';
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -303,15 +305,9 @@
             <label for="cdl">CdL:</label>
             <select id="cdl" name="cdl" required>
                 <option value="">-- Seleziona CdL --</option>
-                <option value="T. Ing. Informatica">T. Ing. Informatica</option>
-                <option value="T. Ing. Biomedica">T. Ing. Biomedica</option>
-                <option value="T. Ing. Elettronica">T. Ing. Elettronica</option>
-                <option value="T. Ing. delle Telecomunicazioni">T. Ing. delle Telecomunicazioni</option>
-                <option value="M. Ing. Biomedica, Bionics Engineering">M. Ing. Biomedica, Bionics Eng.</option>
-                <option value="M. Ing. Elettronica">M. Ing. Elettronica</option>
-                <option value="M. Computer Engineering, Artificial Intelligence and Data Engineering">M. Computer Eng., AI and Data Eng.</option>
-                <option value="M. Ing. Robotica e della Automazione">M. Ing. Robotica e Automazione</option>
-                <option value="M. Ing. delle Telecomunicazioni">M. Ing. delle Telecomunicazioni</option>
+                <?php foreach (Configurazione::getCorsiDisponibili() as $corso): ?>
+                <option value="<?php echo htmlspecialchars($corso); ?>"><?php echo htmlspecialchars($corso); ?></option>
+                <?php endforeach; ?>
             </select>
 
             <label for="data_laurea">Data Laurea:</label>
@@ -334,10 +330,8 @@
 
             <!-- Link Visualizza Prospetti (UC2) -->
             <?php
-            require_once __DIR__ . '/classi/AccessoProspetti.php';
-            require_once __DIR__ . '/classi/Configurazione.php';
 
-            $datiInvioPath = __DIR__ . '/data/dati_invio.json';
+            $datiInvioPath = AccessoProspetti::getPercorsoDatiInvio();
             $prospettiDisponibili = false;
             $messaggioErrore = '';
             $percorso = '';
@@ -431,8 +425,8 @@
 
                 // Aggiorna dinamicamente il link Visualizza Prospetti con il nuovo CdL
                 var link = document.getElementById('link-visualizza');
-                if (data.cdlShort) {
-                    link.href = '/laureandosi/data/pdf_generati/' + data.cdlShort + '/prospettoCommissione.pdf';
+                if (data.urlCommissione) {
+                    link.href = data.urlCommissione;
                 }
                 link.style.opacity = '1';
                 link.style.pointerEvents = 'auto';

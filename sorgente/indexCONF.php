@@ -5,7 +5,7 @@
  * Permette di modificare: formula, oggetto/testo mail, pedice commissione,
  * valore lode, esami informatici e parametri vari.
  *
- * Utilizza POST per le modifiche (problema #10).
+ * Utilizza POST per le modifiche.
  */
 
 require_once __DIR__ . '/classi/Configurazione.php';
@@ -59,9 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['azione'])) {
 
         // Salvataggio sezione "Filtro esami"
         elseif ($azione === 'salva_filtro') {
-            $matricolaFiltro = trim($_POST['matricola_filtro'] ?? '*');
-            // TODO: Gestire matricola_filtro - salvare in un file dedicato se necessario
-            
             if (isset($_POST['esami_da_togliere'])) {
                 $esami = array_map('trim', explode("\n", trim($_POST['esami_da_togliere'])));
                 $esami = array_filter($esami, function($e) { return !empty($e); });
@@ -156,11 +153,11 @@ if (!empty($cdlSelezionato)) {
             color: #1a3e5c;
             font-weight: 600;
         }
-        label { 
-            display: block; 
-            font-weight: 500; 
-            margin-bottom: 0.4em; 
-            color: #555; 
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.4em;
+            color: #555;
             font-size: 0.95em;
         }
         select, textarea, input[type="text"], input[type="number"] {
@@ -177,9 +174,9 @@ if (!empty($cdlSelezionato)) {
             border-color: #1a3e5c;
             background: white;
         }
-        textarea { 
-            min-height: 60px; 
-            resize: vertical; 
+        textarea {
+            min-height: 60px;
+            resize: vertical;
             font-family: 'Courier New', monospace;
             line-height: 1.5;
         }
@@ -216,11 +213,11 @@ if (!empty($cdlSelezionato)) {
             padding-top: 1em;
             border-top: 1px solid #e0e4e8;
         }
-        footer { 
-            text-align: center; 
-            padding: 2em; 
-            color: #7f8c8d; 
-            font-size: 0.85em; 
+        footer {
+            text-align: center;
+            padding: 2em;
+            color: #7f8c8d;
+            font-size: 0.85em;
         }
     </style>
 </head>
@@ -246,13 +243,7 @@ if (!empty($cdlSelezionato)) {
             <select id="cdl_select" name="cdl" onchange="this.form.submit()">
                 <option value="">-- Seleziona --</option>
                 <?php
-                $corsi = [
-                    'T. Ing. Informatica', 'T. Ing. Biomedica', 'T. Ing. Elettronica',
-                    'T. Ing. delle Telecomunicazioni',
-                    'M. Ing. Biomedica, Bionics Engineering', 'M. Ing. Elettronica',
-                    'M. Computer Engineering, Artificial Intelligence and Data Engineering',
-                    'M. Ing. Robotica e della Automazione', 'M. Ing. delle Telecomunicazioni'
-                ];
+                $corsi = Configurazione::getCorsiDisponibili();
                 foreach ($corsi as $corso):
                     $selected = ($corso === $cdlSelezionato) ? 'selected' : '';
                 ?>
@@ -265,14 +256,14 @@ if (!empty($cdlSelezionato)) {
     </div>
 
     <!-- Modifica configurazione -->
-    <?php if ($configCorrente !== null): 
+    <?php if ($configCorrente !== null):
         $parametriSimulazione = $configCorrente->getParametriSimulazione();
         $parametriMail = $configCorrente->getParametriMail();
         $isInformatica = ($cdlSelezionato === 'T. Ing. Informatica');
     ?>
     <div class="card">
         <h2>Configurazione: <?php echo htmlspecialchars($cdlSelezionato); ?></h2>
-        
+
         <!-- Submenu selezione sezione -->
         <label for="sezione_select">Sezione di configurazione:</label>
         <select id="sezione_select" name="sezione" onchange="mostraSezione(this.value)">
@@ -353,12 +344,7 @@ if (!empty($cdlSelezionato)) {
 
             <h3>Filtro esami</h3>
 
-            <label for="matricola_filtro">Matricola (usa * per tutti gli studenti):</label>
-            <input type="text" id="matricola_filtro" name="matricola_filtro" 
-                   placeholder="es: * oppure 123456, 234567" value="*">
-            <small style="color:#666; display:block; margin-top:-0.5em; margin-bottom:1em;">
-                Inserisci * per applicare i filtri a tutti gli studenti, oppure matricole specifiche separate da virgola
-            </small>
+            <p>I filtri si applicano a tutti gli studenti del corso selezionato.</p>
 
             <label for="esami_da_togliere">Esami da escludere dal prospetto (uno per riga):</label>
             <textarea id="esami_da_togliere" name="esami_da_togliere" rows="4"><?php echo htmlspecialchars(implode("\n", $configCorrente->getEsamiDaTogliere())); ?></textarea>

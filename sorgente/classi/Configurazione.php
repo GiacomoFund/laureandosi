@@ -3,24 +3,6 @@
  * Classe Entity: Configurazione
  * Gestisce i parametri di configurazione per ogni Corso di Laurea.
  * Comprende formula di calcolo, filtri esami e lista esami informatici.
- *
- * Attributi:
- *  - formula: Formula per il calcolo del voto di laurea
- *  - valoreLode: Valore numerico da assegnare alla lode
- *  - esamiInformatici: Lista dei nomi degli esami informatici
- *  - esamiDaTogliere: Lista esami esclusi dal prospetto
- *  - esamiNonMedia: Lista esami visualizzati ma esclusi dalla media
- *  - parametriMail: Oggetto e testo della mail per il CdL
- *
- * Operazioni:
- *  + caricaConfigurazione(corsoDiLaurea): void
- *  + getEsamiInformatici(): Array
- *  + getFiltriEsami(): Array
- *  + getFormula(): String
- *  + getParametriSimulazione(): Array
- *  + getParametriMail(): Array
- *  + valutaFormula(formula, variabili): Float  [statico, sicuro]
- *  + salvaConfigurazione(): void
  */
 class Configurazione {
 
@@ -50,6 +32,15 @@ class Configurazione {
         $this->esamiInfoPath = __DIR__ . '/../config/esami_informatici.json';
         $this->corsoDiLaurea = $corsoDiLaurea;
         $this->caricaConfigurazione($corsoDiLaurea);
+    }
+
+    /** Unica fonte dell'elenco dei corsi mostrati nelle pagine. */
+    public static function getCorsiDisponibili() {
+        $json = file_get_contents(__DIR__ . '/../config/formule_laurea.json');
+        if ($json === false) {
+            throw new RuntimeException('Impossibile leggere i corsi di laurea.');
+        }
+        return array_keys(json_decode($json, true, 512, JSON_THROW_ON_ERROR));
     }
 
     /**
@@ -144,7 +135,7 @@ class Configurazione {
     public function setOggettoMail($oggetto)             { $this->parametriMail['oggetto'] = $oggetto; }
     public function setTestoMail($testo)                 { $this->parametriMail['testo'] = $testo; }
     public function setPediceCommissione($pedice)        { $this->pediceCommissione = $pedice; }
-    
+
     public function setParametriSimulazione($Tmin, $Tmax, $Tstep, $Cmin, $Cmax, $Cstep) {
         $this->parametriSimulazione = [
             'Tmin'  => intval($Tmin),
@@ -183,17 +174,17 @@ class Configurazione {
         $config[$this->corsoDiLaurea]['testoMail']          = $this->parametriMail['testo'];
         $config[$this->corsoDiLaurea]['pediceCommissione']  = $this->pediceCommissione;
 
-        file_put_contents(
-            $this->configPath,
-            json_encode($config, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
-        );
+        $jsonConfigurazione = json_encode($config, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+        if (@file_put_contents($this->configPath, $jsonConfigurazione, LOCK_EX) === false) {
+            throw new RuntimeException('Impossibile salvare la configurazione.');
+        }
 
         // Salva esami informatici (file separato)
         $esamiData = ['nomi_esami' => $this->esamiInformatici];
-        file_put_contents(
-            $this->esamiInfoPath,
-            json_encode($esamiData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
-        );
+        $jsonEsami = json_encode($esamiData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+        if (@file_put_contents($this->esamiInfoPath, $jsonEsami, LOCK_EX) === false) {
+            throw new RuntimeException('Impossibile salvare gli esami informatici.');
+        }
     }
 
     // ===================== Valutatore di formule sicuro =====================
@@ -214,7 +205,7 @@ class Configurazione {
         uksort($variabili, function($a, $b) {
             return strlen($b) - strlen($a);
         });
-        
+
         foreach ($variabili as $nome => $valore) {
             $formula = str_replace('$' . $nome, strval(floatval($valore)), $formula);
         }

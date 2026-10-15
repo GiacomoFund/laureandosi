@@ -2,15 +2,6 @@
 /**
  * Classe Entity: EsameLaureando
  * Rappresenta un singolo esame sostenuto dal laureando.
- *
- * Attributi:
- *  - nome: Nome dell'esame
- *  - codice: Codice dell'esame
- *  - voto: Voto conseguito (da 18 a 30L, convertito in intero)
- *  - cfu: Crediti formativi universitari dell'esame
- *  - data: Data di superamento dell'esame
- *  - faMedia: Flag che indica se l'esame concorre al calcolo della media
- *  - informatico: Flag che indica se l'esame e' un esame informatico
  */
 class EsameLaureando {
 

@@ -9,12 +9,6 @@ require_once __DIR__ . '/../lib/fpdf184/fpdf.php';
  * Genera il PDF con il prospetto di laurea del singolo laureando.
  *
  * Sotto-classi: ProspettoConSimulazione
- *
- * Attributi:
- *  - prospettoLaureando: Oggetto FPDF contenente il documento PDF
- *
- * Operazioni:
- *  + creaPDFLaureando(): FPDF
  */
 class ProspettoPDFLaureando {
 
@@ -70,8 +64,7 @@ class ProspettoPDFLaureando {
 
     /**
      * Genera il contenuto della carriera su un oggetto PDF esistente.
-     * Metodo condiviso con ProspettoConSimulazione per eliminare
-     * la duplicazione di codice.
+     * Metodo condiviso con ProspettoConSimulazione.
      *
      * @param FPDF $pdf Oggetto PDF su cui scrivere
      */

@@ -8,7 +8,7 @@
  *  - matricole[]: Array di matricole selezionate. Se assente, invia a tutte.
  */
 
-// Solo richieste POST (problema #10: no GET per side-effect)
+// Solo richieste POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
@@ -26,10 +26,14 @@ try {
     // Se l'utente ha selezionato matricole specifiche, filtra
     $matricoleSelezionate = isset($_POST['matricole']) ? $_POST['matricole'] : null;
 
-    if ($matricoleSelezionate !== null && is_array($matricoleSelezionate)) {
+    if ($matricoleSelezionate !== null && !is_array($matricoleSelezionate)) {
+        throw new InvalidArgumentException('Il parametro matricole deve essere un array.');
+    }
+
+    if ($matricoleSelezionate !== null) {
         // Valida: solo cifre
         $matricoleSelezionate = array_filter($matricoleSelezionate, function($m) {
-            return preg_match('/^\d+$/', trim($m));
+            return is_string($m) && preg_match('/^\d+$/', trim($m));
         });
         $matricoleSelezionate = array_values($matricoleSelezionate);
 
@@ -38,7 +42,7 @@ try {
         }
 
         // Carica CdL e data dal file dati_invio.json
-        $percorsoDati = __DIR__ . '/data/dati_invio.json';
+        $percorsoDati = AccessoProspetti::getPercorsoDatiInvio();
         if (!file_exists($percorsoDati)) {
             throw new RuntimeException("File dati invio non trovato. Generare prima i prospetti.");
         }
@@ -82,7 +86,7 @@ try {
         'dettagli'  => $dettagli
     ]);
 
-} catch (Exception $e) {
+} catch (Throwable $e) {
     http_response_code(400);
     echo json_encode([
         'successo'  => false,

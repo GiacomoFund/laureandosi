@@ -10,7 +10,7 @@
  *  - matricole: Sequenza di matricole (separate da spazi, virgole o a capo)
  */
 
-// Solo richieste POST (problema #10: no GET per side-effect)
+// Solo richieste POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
@@ -26,7 +26,12 @@ require_once __DIR__ . '/classi/GestoreProspetti.php';
 require_once __DIR__ . '/classi/Configurazione.php';
 
 try {
-    // ===== Validazione input (problema #9) =====
+    foreach (['cdl', 'data_laurea', 'matricole'] as $campo) {
+        if (isset($_POST[$campo]) && !is_string($_POST[$campo])) {
+            throw new InvalidArgumentException('Parametro non valido: ' . $campo);
+        }
+    }
+    // ===== Validazione input =====
     $cdl = isset($_POST['cdl']) ? trim($_POST['cdl']) : '';
     $dataLaurea = isset($_POST['data_laurea']) ? trim($_POST['data_laurea']) : '';
     $matricoleRaw = isset($_POST['matricole']) ? trim($_POST['matricole']) : '';
@@ -39,9 +44,9 @@ try {
         throw new InvalidArgumentException("Inserire la data di laurea.");
     }
 
-    // Valida formato data (YYYY-MM-DD)
-    if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $dataLaurea)) {
-        throw new InvalidArgumentException("Formato data non valido. Usare YYYY-MM-DD.");
+    if (!preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $dataLaurea, $partiData) ||
+        !checkdate((int)$partiData[2], (int)$partiData[3], (int)$partiData[1])) {
+        throw new InvalidArgumentException('Data non valida. Usare YYYY-MM-DD.');
     }
 
     if (empty($matricoleRaw)) {
@@ -64,9 +69,14 @@ try {
         throw new InvalidArgumentException("Nessuna matricola valida inserita.");
     }
 
+    $matricoleValide = array_values(array_unique($matricoleValide));
+
     // ===== Generazione prospetti =====
     $gestore = new GestoreProspetti($matricoleValide, $cdl, $dataLaurea);
     $gestore->generaProspettiLaureandi();
+    if (empty($gestore->getProspettiGenerati())) {
+        throw new RuntimeException('Nessun prospetto generato. Verificare le matricole inserite.');
+    }
     $gestore->generaProspettoCommissione();
     $gestore->salvaDatiPerInvio();
 
@@ -92,10 +102,11 @@ try {
         'generati'   => count($generati),
         'matricole'  => $generati,
         'cdlShort'   => $cdlShort,
+        'urlCommissione' => (new AccessoProspetti($cdlShort))->getPercorsoCommissione(),
         'errori'     => $errori
     ]);
 
-} catch (Exception $e) {
+} catch (Throwable $e) {
     echo json_encode([
         'successo'  => false,
         'messaggio' => $e->getMessage()

@@ -3,10 +3,6 @@
  * Classe Boundary: GestioneCarrieraStudente
  * Interfaccia verso il sistema di gestione carriere di ateneo.
  * Simula l'accesso al sistema esterno tramite file JSON locali.
- *
- * Operazioni:
- *  + prelevaAnagrafica(matricola): Array
- *  + prelevaCarriera(matricola): Array
  */
 class GestioneCarrieraStudente {
 

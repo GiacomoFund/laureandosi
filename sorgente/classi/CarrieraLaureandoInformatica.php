@@ -6,15 +6,6 @@ require_once __DIR__ . '/CarrieraLaureando.php';
  * Estende CarrieraLaureando con logica specifica per Ing. Informatica.
  *
  * Super-classe: CarrieraLaureando
- *
- * Attributi:
- *  + idoneitaBonus: Boolean
- *  - annoImmatricolazione: Integer
- *
- * Operazioni:
- *  + verificaIdoneitaBonus(): Boolean
- *  + selezionaEsameDaEscludere(): void
- *  + calcolaMediaInformatici(): Float
  */
 class CarrieraLaureandoInformatica extends CarrieraLaureando {
 

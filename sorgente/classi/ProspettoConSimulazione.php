@@ -6,12 +6,6 @@ require_once __DIR__ . '/ProspettoPDFLaureando.php';
  * Estende ProspettoPDFLaureando aggiungendo la tabella di simulazione del voto.
  *
  * Super-classe: ProspettoPDFLaureando
- *
- * Attributi:
- *  - prospettoConSimulazione: Oggetto FPDF con prospetto e simulazione
- *
- * Operazioni:
- *  + aggiungiPDFConSimulazione(pdf): FPDF
  */
 class ProspettoConSimulazione extends ProspettoPDFLaureando {
 
@@ -40,7 +34,7 @@ class ProspettoConSimulazione extends ProspettoPDFLaureando {
             $pdf = new FPDF();
         }
 
-        // Genera carriera (riusa il metodo del padre, nessuna duplicazione)
+        // Genera carriera tramite il metodo del padre
         $this->generaContenutoCarriera($pdf);
 
         // Aggiunge la simulazione
@@ -122,7 +116,7 @@ class ProspettoConSimulazione extends ProspettoPDFLaureando {
                     if ($i < count($dati)) {
                         // Colonna sinistra
                         $pdf->Cell($colWidth, $height, $dati[$i]['C'],    1, 0, 'C');
-                        
+
                         // Se non c'è dato a destra, chiudi la riga dopo il voto
                         if ($i + $metà >= count($dati)) {
                             $pdf->Cell($colWidth, $height, $dati[$i]['voto'], 1, 1, 'C');
@@ -197,7 +191,7 @@ class ProspettoConSimulazione extends ProspettoPDFLaureando {
                     if ($i < count($dati)) {
                         // Colonna sinistra
                         $pdf->Cell($colWidth, $height, $dati[$i]['T'],    1, 0, 'C');
-                        
+
                         // Se non c'è dato a destra, chiudi la riga dopo il voto
                         if ($i + $metà >= count($dati)) {
                             $pdf->Cell($colWidth, $height, $dati[$i]['voto'], 1, 1, 'C');
@@ -245,7 +239,7 @@ class ProspettoConSimulazione extends ProspettoPDFLaureando {
         $fontFamily = 'Helvetica';
         $config = $this->carriera->getConfigurazione();
         $pedice = $config->getPediceCommissione();
-        
+
         if (!empty($pedice)) {
             $pdf->Ln(5);
             $pdf->SetFont($fontFamily, 'I', 8);

@@ -41,22 +41,18 @@ $test2 = $testConfig['tests'][1];
 $percorsoAss = $accesso->getPercorsoCommissioneAssoluto();
 $cartella = $accesso->getCartellaOutput();
 
+$cartellaAttesa = getenv('LAUREANDOSI_RUNTIME_DIR') . '/pdf_generati/';
 $percorsoAssolutoOk = (
-    !empty($percorsoAss) &&
-    (strpos($percorsoAss, $test2['expected']['contiene_data'] . '/' . $test2['expected']['contiene_pdf_generati']) !== false ||
-     strpos($percorsoAss, $test2['expected']['contiene_data'] . DIRECTORY_SEPARATOR . $test2['expected']['contiene_pdf_generati']) !== false) &&
-    !empty($cartella) &&
-    (strpos($cartella, $test2['expected']['contiene_data']) !== false)
+    $cartella === $cartellaAttesa &&
+    $percorsoAss === $cartellaAttesa . 'prospettoCommissione.pdf'
 );
-
-$dettaglio2 = 'Verifica che getPercorsoCommissioneAssoluto() restituisca un percorso assoluto contenente la struttura "data/pdf_generati" e che getCartellaOutput() restituisca la cartella base dove salvare i PDF. Il percorso assoluto è necessario per salvare i file sul filesystem.';
 
 assertTest(
     'Percorso assoluto e cartella output',
     $percorsoAssolutoOk,
-    $dettaglio2,
-    'Percorso assoluto contiene "data/pdf_generati", cartella output valida',
-    sprintf('Assoluto=%s, Cartella=%s', $percorsoAss, $cartella)
+    'I PDF devono essere salvati nella directory runtime configurata.',
+    $cartellaAttesa . 'prospettoCommissione.pdf',
+    $percorsoAss
 );
 
 // ===== TEST 3: Lista percorsi e formato slash =====

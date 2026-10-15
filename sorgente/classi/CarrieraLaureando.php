@@ -8,16 +8,6 @@ require_once __DIR__ . '/Configurazione.php';
  * Costruisce la carriera del laureando e calcola medie e crediti.
  *
  * Sotto-classi: CarrieraLaureandoInformatica
- *
- * Attributi:
- *  + nome, cognome, email, matricola, esami, corsoDiLaurea, dataLaurea
- *
- * Operazioni:
- *  + calcolaMediaPesata(): Float
- *  + calcolaCreditiConseguiti(): Integer
- *  + calcolaCreditiMedia(): Float
- *  + calcolaVotoLaurea(T, C): Float
- *  + applicaFiltroEsami(): void
  */
 class CarrieraLaureando {
 

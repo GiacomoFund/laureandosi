@@ -70,11 +70,11 @@ try {
     $percorso2 = $accesso2->getPercorsoLaureandoAssoluto($test3['matricola']);
     $file2Esiste = file_exists($percorso2);
     $dimensione2 = $file2Esiste ? filesize($percorso2) : 0;
-    
+
     $multiStudenteOk = ($file2Esiste && $dimensione2 > $test3['expected']['minDimensione']);
-    
+
     $dettaglio3 = 'Verifica che la classe possa generare PDF per studenti diversi in sequenza senza conflitti. Genera un secondo PDF per la matricola 234567 (CdL Biomedica). I file devono essere salvati in cartelle separate per ogni CdL.';
-    
+
     assertTest(
         'Generazione multipla PDF (robustezza)',
         $multiStudenteOk,

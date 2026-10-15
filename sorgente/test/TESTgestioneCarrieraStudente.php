@@ -46,11 +46,11 @@ $test2 = $testConfig['tests'][1];
 try {
     $anagrafica2 = $gcs->prelevaAnagrafica($test2['matricola']);
     $nome2 = $anagrafica2['Entries']['Entry']['nome'] ?? '';
-    
+
     $multiStudenteOk = ($nome2 === $test2['expected']['nome']);
-    
+
     $dettaglio2 = 'Verifica che la classe possa gestire richieste sequenziali per studenti diversi senza mantenere stato tra le chiamate. Carica la matricola 234567 dopo aver già caricato la 123456.';
-    
+
     assertTest(
         'Caricamento sequenziale di più studenti',
         $multiStudenteOk,
